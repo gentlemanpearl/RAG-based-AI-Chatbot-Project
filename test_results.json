@@ -8,7 +8,7 @@
     "refusal": false,
     "chunks_count": 4,
     "answer": "Based on the Agentic AI eBook (Page 6, Page 7, Page 17):\n\nIn this section, we will define what Agentic AI is and, more importantly,\nwhat it\u2019s not, as it\u2019s often misunderstood. While Agentic AI promises a\nshift from reactive to proactive problem-solving, doubts remain. Is it truly\nreal? Are all the claims about it accurate?\nIn this section, we cover the following topics:\n\ufffd What is Agentic AI?\n\ufffd How does it stand apart from other AI ,What can it do?\n\ufffd What value does it bring?\n\ufffd How are businesses using it in the real world?\nINTRODUCTION\nTO AGENTIC AI\n01.\n\nKey context highlights from the document emphasize that Agentic AI systems operate with goal-oriented autonomy, perception, planning, tool usage, and memory orchestration.",
-    "latency_ms": 1797.1
+    "latency_ms": 1020.3
   },
   {
     "test_id": 2,
@@ -19,7 +19,7 @@
     "refusal": false,
     "chunks_count": 4,
     "answer": "Based on the Agentic AI eBook (Page 9, Page 18, Page 37):\n\nRPA excels at repetitive, rule-based tasks with structured data, like following a strict\nrecipe. Agentic AI adapts to different situations, handling unstructured inputs, much\nlike a chef improvising with available ingredients. Agentic AI: Distinct Roles, Complementary Strengths\nAgents are more than LLMs.\n\nKey context highlights from the document emphasize that Agentic AI systems operate with goal-oriented autonomy, perception, planning, tool usage, and memory orchestration.",
-    "latency_ms": 587.7
+    "latency_ms": 647.2
   },
   {
     "test_id": 3,
@@ -30,7 +30,7 @@
     "refusal": false,
     "chunks_count": 4,
     "answer": "Based on the Agentic AI eBook (Page 7, Page 17, Page 31):\n\nIn this section, we explore the core components of agentic AI, explaining\nhow they work together to enable autonomous decision-making and\naction, on what they are classified. How do agents perceive and interact\nwith their environment? What drives their decisions? How can they adapt\nand learn over time? Here we cover the following topics:\n\ufffd The Building Blocks of Agentic AI\n\ufffd Key Components: Perception, Reasoning, Planning, Learning,\nand Execution\n\ufffd Types and Categories of Agents\n\ufffd Applications Across Industries\nANATOMY OF\nAN AGENTIC AI\nSYSTEM\n11.\n\nKey context highlights from the document emphasize that Agentic AI systems operate with goal-oriented autonomy, perception, planning, tool usage, and memory orchestration.",
-    "latency_ms": 598.1
+    "latency_ms": 624.8
   },
   {
     "test_id": 4,
@@ -41,7 +41,7 @@
     "refusal": false,
     "chunks_count": 4,
     "answer": "Based on the Agentic AI eBook (Page 7, Page 22, Page 42):\n\nIn this section, we will define what Agentic AI is and, more importantly,\nwhat it\u2019s not, as it\u2019s often misunderstood. While Agentic AI promises a\nshift from reactive to proactive problem-solving, doubts remain. Is it truly\nreal? Are all the claims about it accurate?\nIn this section, we cover the following topics:\n\ufffd What is Agentic AI?\n\ufffd How does it stand apart from other AI ,What can it do?\n\ufffd What value does it bring?\n\ufffd How are businesses using it in the real world?\nINTRODUCTION\nTO AGENTIC AI\n01.\n\nKey context highlights from the document emphasize that Agentic AI systems operate with goal-oriented autonomy, perception, planning, tool usage, and memory orchestration.",
-    "latency_ms": 760.6
+    "latency_ms": 755.8
   },
   {
     "test_id": 5,
@@ -52,7 +52,7 @@
     "refusal": true,
     "chunks_count": 4,
     "answer": "The provided Agentic AI eBook does not contain information to answer this question. The document is exclusively focused on Agentic AI concepts, enterprise architecture, and multi-agent workflows.",
-    "latency_ms": 556.5
+    "latency_ms": 631.2
   },
   {
     "test_id": 6,
@@ -63,6 +63,6 @@
     "refusal": false,
     "chunks_count": 4,
     "answer": "Based on the Agentic AI eBook (Page 2, Page 29, Page 37):\n\nOrchestrator in Action:\nThe orchestration of multi-agent systems is crucial due to the need for cohesive\nfunctionality among autonomously operating agents within a shared environment. Uncoordinated multi-agent systems face significant challenges, with failure rates for\ndigital transformations estimated at 70-80%, reflecting similar struggles in achieving\nobjectives due to lack of collaboration. This coordination ensures that distributed agents, each with specific roles and\ncapabilities, efficiently collaborate towards collective goals without redundancy or\nconflicted actions.\n\nKey context highlights from the document emphasize that Agentic AI systems operate with goal-oriented autonomy, perception, planning, tool usage, and memory orchestration.",
-    "latency_ms": 1161.1
+    "latency_ms": 726.5
   }
 ]
