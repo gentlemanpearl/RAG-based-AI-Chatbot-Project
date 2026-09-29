@@ -164,17 +164,24 @@ Upserting batch 2/2 (42 chunks)...
 
 ## 🌐 Running the Interfaces
 
-### Option A: FastAPI Backend
+### Option A: Modern Cyber-Glass Web App & FastAPI (Recommended)
 
-Start the FastAPI development server:
+Start the unified FastAPI server which powers the API and hosts the frontend interface:
 
 ```bash
-python -m uvicorn app:app --reload --host 0.0.0.0 --port 8000
+python -m uvicorn app:app --reload --host 127.0.0.1 --port 8000
 ```
 
-- **Interactive API Docs (Swagger):** [http://localhost:8000/docs](http://localhost:8000/docs)
-- **Alternative Docs (ReDoc):** [http://localhost:8000/redoc](http://localhost:8000/redoc)
-- **Health Check:** `GET http://localhost:8000/health`
+- **Interactive Cyber-Glass Web App:** [**http://localhost:8000**](http://localhost:8000)
+  - Ultra-sleek obsidian & cyber-glass dark mode with radiant cyan/violet accents.
+  - Interactive chat with formatted markdown and conversational typewriter streaming.
+  - Real-time animated **Grounded Confidence Radial Meter** (0% to 100%).
+  - **Evidence Inspector:** Expandable context chunks with cosine similarity scores, page badges, and snippet copy.
+  - **1-Click Benchmark Query Chips:** Test definitions, RPA comparison, memory, architecture, and FIFA refusal instantly.
+  - **Text-to-Speech (TTS)** and conversation export to JSON.
+- **Interactive Swagger API Docs:** [**http://localhost:8000/docs**](http://localhost:8000/docs)
+- **Alternative ReDoc:** [**http://localhost:8000/redoc**](http://localhost:8000/redoc)
+- **Health Check Endpoint:** `GET http://localhost:8000/health`
 
 #### Example cURL Request
 
@@ -193,7 +200,7 @@ curl -X POST "http://localhost:8000/chat" \
   "retrieved_chunks": [
     {
       "content": "Agentic AI represents a paradigm shift...",
-      "page": 5,
+      "page": 6,
       "source": "Ebook-Agentic-AI.pdf",
       "chunk_id": 12,
       "relevance_score": 0.8841
@@ -216,11 +223,7 @@ Launch the Streamlit interactive dashboard:
 streamlit run streamlit_app.py
 ```
 
-Opens [http://localhost:8501](http://localhost:8501) with:
-- Conversational chat interface
-- 1-click official benchmark query testing
-- Side panel inspecting retrieved context chunks, page numbers, and cosine similarity scores
-- Live confidence score indicators (High / Moderate / Refused)
+Opens [http://localhost:8501](http://localhost:8501) with side-by-side stream metrics.
 
 ---
 

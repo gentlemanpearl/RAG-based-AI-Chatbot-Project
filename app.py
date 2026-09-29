@@ -93,9 +93,9 @@ class ChatResponse(BaseModel):
 # -------------------------------------------------------------
 # Routes
 # -------------------------------------------------------------
-@app.get("/", tags=["General"])
-async def root():
-    """Root endpoint providing service overview and endpoints."""
+@app.get("/api/info", tags=["General"])
+async def api_info():
+    """Endpoint providing service overview and endpoints."""
     return {
         "service": "Agentic AI RAG Chatbot API",
         "status": "online",
@@ -103,7 +103,8 @@ async def root():
         "documentation": "/docs",
         "endpoints": {
             "chat": "POST /chat",
-            "health": "GET /health"
+            "health": "GET /health",
+            "info": "GET /api/info"
         },
         "knowledge_source": "Agentic AI: An Executive's Guide (Konverge AI & Emergence AI)",
         "models": {
@@ -176,6 +177,15 @@ async def chat_endpoint(request: ChatRequest):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Error executing RAG workflow: {str(e)}"
         )
+
+
+from fastapi.staticfiles import StaticFiles
+from pathlib import Path
+
+# Mount Frontend Web App
+FRONTEND_DIR = Path(__file__).resolve().parent / "frontend"
+if FRONTEND_DIR.exists():
+    app.mount("/", StaticFiles(directory=str(FRONTEND_DIR), html=True), name="frontend")
 
 
 if __name__ == "__main__":

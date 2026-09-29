@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agentic AI • Grounded RAG Chatbot</title>
+  <meta name="description" content="Stateful Retrieval-Augmented Generation chatbot strictly grounded in the Agentic AI eBook by Konverge AI & Emergence AI." />
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg" />
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient background glow layers -->
+  <div class="ambient-glow glow-cyan"></div>
+  <div class="ambient-glow glow-violet"></div>
+  <div class="grid-overlay"></div>
+
+  <!-- Top Navigation Header -->
+  <header class="app-header" id="appHeader">
+    <div class="header-left">
+      <div class="logo-wrapper">
+        <img src="assets/logo.jpg" alt="Agentic AI Logo" class="brand-avatar" id="brandLogo" />
+        <span class="live-dot" title="System Active"></span>
+      </div>
+      <div class="brand-info">
+        <h1 class="brand-title">Agentic<span class="gradient-text">AI</span> <span class="badge-version">RAG v1.0</span></h1>
+        <p class="brand-subtitle">Strictly Grounded Knowledge Assistant</p>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="source-tag" title="Knowledge Base Source">
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+        <span>Agentic AI eBook (60 Pages)</span>
+      </div>
+      <div class="backend-status-pill" id="backendStatusPill">
+        <span class="status-pulse-dot" id="statusPulseDot"></span>
+        <span id="backendStatusText">Connecting...</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a href="/docs" target="_blank" class="nav-btn" title="FastAPI Swagger Documentation" id="navDocsBtn">
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span>API Docs</span>
+      </a>
+      <a href="https://github.com/gentlemanpearl/RAG-based-AI-Chatbot-Project" target="_blank" class="nav-btn github-btn" id="navGitBtn">
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        <span>GitHub</span>
+      </a>
+      <button class="icon-btn" id="btnToggleSide" title="Toggle Evidence Inspector">
+        <svg class="icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-layout" id="mainAppLayout">
+    
+    <!-- Left Chat Hub -->
+    <section class="chat-viewport">
+      <div class="chat-scroll-area" id="chatScrollArea">
+        
+        <!-- Welcome Hero Banner (shown when no messages) -->
+        <div class="welcome-hero" id="welcomeHero">
+          <div class="hero-badge">
+            <span class="sparkle">✨</span>
+            <span>Agentic RAG Engine with Grounding Guardrails</span>
+          </div>
+          <h2 class="hero-title">Ask Anything About <span class="gradient-text">Agentic AI</span></h2>
+          <p class="hero-description">
+            This chatbot strictly references the 60-page executive guide by Konverge AI & Emergence AI.
+            It provides precise answers with citation pages and rejects out-of-domain queries.
+          </p>
+
+          <!-- Quick Benchmark Chips -->
+          <div class="quick-prompts-label">Try Official Benchmark Queries:</div>
+          <div class="quick-chips-grid">
+            <button class="prompt-chip" data-query="What is Agentic AI according to the eBook?">
+              <span class="chip-icon">🤖</span>
+              <span class="chip-text">What is Agentic AI?</span>
+            </button>
+            <button class="prompt-chip" data-query="How do AI agents differ from traditional automation systems?">
+              <span class="chip-icon">⚙️</span>
+              <span class="chip-text">AI Agents vs. RPA Automation</span>
+            </button>
+            <button class="prompt-chip" data-query="What are the core components of an Agentic Architecture?">
+              <span class="chip-icon">🏛️</span>
+              <span class="chip-text">Core Components of Architecture</span>
+            </button>
+            <button class="prompt-chip" data-query="What role does memory play in Agentic AI workflows?">
+              <span class="chip-icon">🧠</span>
+              <span class="chip-text">Role of Memory & Persistence</span>
+            </button>
+            <button class="prompt-chip chip-refusal" data-query="Who won the 2022 FIFA World Cup?">
+              <span class="chip-icon">⚽</span>
+              <span class="chip-text">FIFA World Cup (Refusal Test)</span>
+            </button>
+            <button class="prompt-chip" data-query="What challenges do organizations face in multi-agent orchestration?">
+              <span class="chip-icon">🌐</span>
+              <span class="chip-text">Multi-Agent Orchestration Challenges</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Messages Container -->
+        <div class="messages-container" id="messagesContainer"></div>
+
+        <!-- Typing / Generating Indicator -->
+        <div class="typing-indicator-box" id="typingIndicator" style="display: none;">
+          <div class="assistant-avatar-tiny">
+            <img src="assets/logo.jpg" alt="AI" />
+          </div>
+          <div class="typing-content">
+            <div class="typing-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="typing-label">Querying vector index & formulating grounded response...</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Floating Glass Input Bar -->
+      <footer class="input-dock" id="inputDock">
+        <form class="input-form" id="chatForm">
+          <div class="input-field-wrapper">
+            <textarea
+              id="queryInput"
+              class="query-input"
+              rows="1"
+              placeholder="Ask a question about Agentic AI architecture, autonomous systems, or memory..."
+              autocomplete="off"
+              required
+            ></textarea>
+            <button type="submit" class="send-btn" id="sendBtn" title="Send message (Enter)">
+              <svg class="icon-send" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+          <div class="input-footer-bar">
+            <span class="hint-key">Press <kbd>Enter</kbd> to submit, <kbd>Shift + Enter</kbd> for newline</span>
+            <div class="input-actions">
+              <button type="button" class="btn-clean" id="btnClearChat" title="Clear conversation">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <span>Clear</span>
+              </button>
+              <button type="button" class="btn-clean" id="btnExportChat" title="Export conversation">
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <span>Export</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </footer>
+    </section>
+
+    <!-- Right Evidence & Retrieval Inspector Panel -->
+    <aside class="evidence-panel" id="evidencePanel">
+      <div class="panel-header">
+        <div class="panel-title-group">
+          <svg class="icon-svg accent-cyan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <h3 class="panel-title">Evidence & Grounding</h3>
+        </div>
+        <span class="chunks-badge" id="chunksCountBadge">0 Chunks</span>
+      </div>
+
+      <!-- Telemetry Gauges -->
+      <div class="telemetry-grid">
+        <!-- Confidence Radial Card -->
+        <div class="telemetry-card">
+          <div class="meter-container">
+            <svg class="radial-svg" viewBox="0 0 80 80">
+              <circle class="meter-bg" cx="40" cy="40" r="32"></circle>
+              <circle class="meter-fill" id="meterFill" cx="40" cy="40" r="32"></circle>
+            </svg>
+            <div class="meter-number" id="meterVal">--%</div>
+          </div>
+          <div class="telemetry-info">
+            <span class="telem-label">Grounded Confidence</span>
+            <span class="telem-status" id="groundingStatusBadge">Awaiting Query</span>
+          </div>
+        </div>
+
+        <!-- Latency & State Card -->
+        <div class="telemetry-card mini-stats">
+          <div class="stat-item">
+            <span class="stat-label">Latency</span>
+            <span class="stat-value" id="statLatency">-- ms</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Top-k Chunks</span>
+            <span class="stat-value" id="statChunks">4</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Embedding Dim</span>
+            <span class="stat-value">1536</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Citation Notes Box -->
+      <div class="citation-box" id="citationBox" style="display: none;">
+        <span class="citation-icon">📌</span>
+        <span id="citationText">Retrieved attribution notes...</span>
+      </div>
+
+      <!-- Tabs Navigation -->
+      <div class="panel-tabs">
+        <button class="panel-tab active" data-tab="chunksTab" id="tabBtnChunks">
+          Context Chunks
+        </button>
+        <button class="panel-tab" data-tab="jsonTab" id="tabBtnJson">
+          Raw LangGraph JSON
+        </button>
+      </div>
+
+      <!-- Tab Content: Chunks Stream -->
+      <div class="tab-pane active" id="chunksTab">
+        <div class="chunks-list" id="chunksList">
+          <div class="empty-chunks-placeholder">
+            <div class="radar-scan"></div>
+            <p>Execute a query to inspect the top-k retrieved semantic chunks from Pinecone with cosine relevance and page numbers.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab Content: Raw JSON Viewer -->
+      <div class="tab-pane" id="jsonTab">
+        <div class="json-viewer-header">
+          <span>Execution Payload</span>
+          <button class="btn-xs" id="btnCopyJson">Copy JSON</button>
+        </div>
+        <pre class="json-code-block"><code id="rawJsonCode">// JSON telemetry will appear here after query execution</code></pre>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
